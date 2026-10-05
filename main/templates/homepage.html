@@ -1,0 +1,84 @@
+<!--
+<p>
+<a href="{% url 'main:homepage' %}">home</a>
+<a href="{% url 'patients:patients_dashboard' %}">patients</a>
+<a href="{% url 'Doctors:doctors_dashboard' %}">doctors</a>
+<a href="{% url 'patients:view_record' %}">show records
+</a>
+<a href="{% url 'Doctors:add_medical_records' %}">add record</a>
+
+</p>
+{% if user.is_authenticated %}
+    <p>hello {{user.username}} </p>
+    </hr>
+    <form action="{% url 'accounts:logout' %}" method="post">
+        {%csrf_token%}
+        <button name="submit">logout</button>
+    </form> 
+{%else%}
+    <a href="{% url 'accounts:login_page' %}">login</a>
+    <a href="{% url 'accounts:register' %}">register</a>
+{%endif%}
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>home</title>
+    {% load bootstrap5 %}
+    {% bootstrap_css%}
+    {% bootstrap_javascript %}
+</head>
+<body>
+   <nav class="navbar navbar-expand-sm bg-dark navbar-dark mb-4">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#colnav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="colnav">
+                <a href="{% url 'main:homepage' %}" class="navbar-brand">Home</a>
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item">
+                            <a href="{% url 'patients:patients_dashboard' %}" class="nav-link">patients</a>
+                        </li>
+                        <li class="nav-item">    
+                        <a  href="{% url 'Doctors:doctors_dashboard' %}" class="nav-link">doctors</a>
+                        </li>
+                    </ul>
+
+                    <ul class="navbar-nav ms-auto">
+                        {% if user.is_authenticated %}
+                            <li class="nav-item">
+                                <span class="navbar-text text-whit me-2"> hello {{user.username}} </span>
+                            </li>
+                        {% else %}
+                            <li class="nav-item">
+                                <a href="{% url 'accounts:register' %}" class="nav-link">register</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{% url 'accounts:login_page' %}" class="nav-link">login</a>
+                            </li>
+                        {%endif%}
+                    </ul>
+                     {% if user.is_authenticated %}
+                        <form action="{% url 'accounts:logout' %}" method="post">
+                            {%csrf_token%}
+                            <button name="submit" class="btn btn-danger">logout</button>
+                        </form>
+                    {%endif%}
+            </div>    
+        </div>
+   </nav>
+   <main class="container">
+        <div class="pb-2 mb-2 border-bottom">
+            {% block page_header %}{% endblock %}
+        </div>
+
+
+        <div>
+            {%block content%}{% endblock %}
+        </div>
+   </main>
+</body>
+</html>

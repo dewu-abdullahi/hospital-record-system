@@ -1,0 +1,9 @@
+{% extends 'homepage.html' %}
+{% load bootstrap5 %}
+{% block content %}
+    <form action="{% url 'Doctors:edit_patient_record' medical_record.id %}" method="post">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        {% bootstrap_button button_type='submit' content='Edit record' %}
+    </form>
+{% endblock %}

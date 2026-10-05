@@ -1,0 +1,36 @@
+{% extends "homepage.html" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% block page_header %}
+        <div class="container mt-4 p-5 bg-dark rounded text-white">
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aspernatur placeat odit consequuntur molestiae quaerat officia enim impedit omnis repudiandae numquam? Delectus reiciendis necessitatibus itaque aspernatur odio dignissimos qui quos fugiat. Labore, temporibus ipsum. </p>
+            {% if user.is_authenticated %}
+                {% if user.role == "doctor" %}
+                    <a href="{% url 'Doctors:show_patients' %}" class="btn btn-primary bg-lg mt-2"> show patients </a>
+                {% else %}
+                    <a href="{% url 'patients:view_record' %}" class="btn btn-primary bg-lg mt-2"> view record&raquo;</a>
+                {% endif %}
+            {% else %}
+                <a href="{% url 'accounts:register' %}" class="btn btn-primary bg-lg mt-2 ">
+                        Register&raquo;
+                    </a>
+            {% endif %}
+        </div>
+    {% endblock %}
+
+    
+    <footer class=" container-fluid bg-dark text-white py-4 mt-4 ">
+        <div class="container-fluid">
+            <p>
+                &copy; developed by D-world
+            </p>
+        </div>
+    </footer>
+</body>
+</html>

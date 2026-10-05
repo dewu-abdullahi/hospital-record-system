@@ -1,0 +1,17 @@
+{% extends 'homepage.html' %}
+{%block page_header%}
+    <h1>
+        Doctors name: {{user.username}}
+    </h1>
+{% endblock %}
+{%block content%}
+    <div class="container mt-4 p-5 bg-dark rounded text-white">
+        <p class="lead">
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Harum quis fugit, cumque illo quisquam soluta impedit tenetur. In ipsum molestias omnis mollitia sequi inventore repellat, hic labore. Tenetur, provident eos placeat minima cumque maxime laudantium?
+        </p>
+        <p class="justify-content-center">
+            <a href="{% url 'Doctors:add_medical_records' %}" class="btn btn-primary bg-lg mt-2">Add records</a>
+            <a href="{% url 'Doctors:show_patients' %}" class="btn btn-primary bg-lg mt-2"> show patients</a>
+        </p>
+    </div>
+{%endblock content%}

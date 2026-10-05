@@ -1,0 +1,31 @@
+{% extends 'homepage.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+</head>
+<body>
+
+{%block content%}
+    {% for record in patients %}
+        <div class="card">
+            <div class="card bg-dark text-white">
+                <h4 class="card-title text-capitalize">
+                    {{record.username}}
+                </h4>
+                <p class="card-text">Lorem ipsum dolor sit amet consectetur.</p>
+                <p> <a href="{% url 'Doctors:show_patients_record' record.id%}" class="card-link text-decoration-none btn btn-primary bg-lg mt-2"> {{record.username}} </a>
+                    <a href="{% url 'Doctors:edit_patient_record' record.id %}" class="btn btn-primary bg-lg mt-2">edit records</a> 
+                 </p>
+            
+            </div>
+        </div>
+    {% endfor %}
+{%endblock%}
+</body>
+</html>
